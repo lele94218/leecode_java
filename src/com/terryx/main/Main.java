@@ -1,13 +1,13 @@
 package com.terryx.main;
 
-import com.terryx.leecode.Solution16;
+import com.terryx.leecode.Solution1;
 
 /**
  * @author xueta on 8/25/2016 8:06 AM.
  */
 public class Main {
     public static void main(String[] args) {
-        Solution16 solution16 = new Solution16();
-        System.out.println(solution16.threeSumClosest(new int[]{-1, 2, 1, -4}, 1));
+        Solution1 solution1 = new Solution1();
+        solution1.twoSum(new int[]{0, 4, 3, 0}, 0);
     }
 }
