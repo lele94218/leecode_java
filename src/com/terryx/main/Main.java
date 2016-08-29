@@ -7,14 +7,7 @@ import com.terryx.leecode.*;
  */
 public class Main {
     public static void main(String[] args) {
-        Solution48 solution48 = new Solution48();
-        int[][] a = {{1, 2}, {3, 4}};
-        solution48.rotate(a);
-        for (int i = 0; i < a[0].length; ++i) {
-            for (int j = 0; j < a[0].length; ++j) {
-                System.out.print(a[i][j] + " ");
-            }
-            System.out.println();
-        }
+        Solution105 solution105 = new Solution105();
+        solution105.buildTree(new int[] {}, new int[] {});
     }
 }
