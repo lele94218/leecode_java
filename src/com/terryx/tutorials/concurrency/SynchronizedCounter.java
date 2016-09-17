@@ -1,0 +1,20 @@
+package com.terryx.tutorials.concurrency;
+
+/**
+ * @author taoranxue on 9/16/16 1:58 PM.
+ */
+public class SynchronizedCounter {
+    private int c = 0;
+
+    public synchronized void increment() {
+        c ++;
+    }
+
+    public synchronized void decrement() {
+        c --;
+    }
+
+    public synchronized int value() {
+        return c;
+    }
+}
