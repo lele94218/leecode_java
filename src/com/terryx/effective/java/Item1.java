@@ -1,10 +1,13 @@
 package com.terryx.effective.java;
 
+import com.terryx.effective.java.serviceframework.Service;
+import com.terryx.effective.java.serviceframework.Services;
+
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.EnumSet;
+import java.util.*;
 
 /**
  * @author taoranxue on 9/13/16 4:29 PM.
@@ -24,6 +27,8 @@ public class Item1 {
          */
         EnumSet<Numbers> set = noneOf(Numbers.class);
 
+        AbstractMap<String, String> map = new HashMap<>();
+
         /*
          * 1. service interface: to implement. e.g. java.sql.Connection
          * 2. provider registration API: to register the interface. e.g. java.sql.DriverManager.registerDriver
@@ -34,9 +39,18 @@ public class Item1 {
          * environment to avoid memory inconsistency and thread interference error. Keyword thread. Basically,
          * this allows not threads to overlap and stuff.
          */
+        Driver driver = null;
+        DriverManager driverManager = null;
         Connection connection = null;
-//        DriverManager.registerDriver();
-        DriverManager.getConnection("jdbc:mysql://localhost:3306/dataBase", "root", "root");
-//        Driver
+        try {
+            Class.forName("java.lang.Thread");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        Collections collections = null;
+
+        Service service = Services.getInstance(Services.DEFAULT_PROVIDER_NAME);
+
+
     }
 }
