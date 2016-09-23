@@ -9,6 +9,9 @@ import java.util.UUID;
  */
 public class Main {
     public static void main(String[] args) {
+        Solution215 solution215 = new Solution215();
+        int a[] = new int[]{1};
+        System.out.println(solution215.findKthLargest(a, 1));
 
     }
 }
