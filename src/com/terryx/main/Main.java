@@ -16,14 +16,14 @@ public class Main {
             listNodes[i] = new Solution23.ListNode(random.nextInt()%100);
         }
 
-        Solution23.ListNode listNode = solution23.mergeKLists(new Solution23.ListNode[]{new Solution23.ListNode(1)});
-        System.out.println(listNode);
+        Solution23.ListNode listNode = solution23.mergeKLists(new Solution23.ListNode[]{new Solution23.ListNode(5),new Solution23.ListNode(2)});
+//        System.out.println(listNode);
         System.out.println("ok");
-//        while (listNode != null) {
-//            System.out.print(listNode + " ");
-//            listNode = listNode.next;
-//        }
-//        System.out.println();
+        while (listNode != null) {
+            System.out.print(listNode + " ");
+            listNode = listNode.next;
+        }
+        System.out.println();
     }
 
 }
