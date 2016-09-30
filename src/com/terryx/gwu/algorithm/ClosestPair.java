@@ -9,6 +9,17 @@ public class ClosestPair {
     private double bestDistance = Double.POSITIVE_INFINITY;
     private int cnt = 0;
 
+    public static double bruteForce(Point2D[] points) {
+        int n = points.length;
+        double resDistance = Double.POSITIVE_INFINITY;
+        for (int i = 0; i < n; ++ i) {
+            for (int j = i + 1; j < n; ++ j) {
+                resDistance = Math.min(points[i].distanceTo(points[j]), resDistance);
+            }
+        }
+        return resDistance;
+    }
+
     public ClosestPair(Point2D[] points) {
         int n = points.length;
         if (n <= 1) return;
@@ -94,20 +105,24 @@ public class ClosestPair {
     public static void main(String[] args) {
 //        Scanner scanner = new Scanner(new BufferedInputStream(System.in));
 //        int n = scanner.nextInt();
-        int n = 2000000;
-        int t = 25;
-        int sum = 0;
+        int n = 5000;
+        int t = 100;
         while (t-- > 0) {
             Point2D[] points = RandomData.randomPoint2D(n);
             long start = System.currentTimeMillis();
             ClosestPair closestPair = new ClosestPair(points);
             long end = System.currentTimeMillis();
-            if (t < 997) {
-                sum += end - start;
-                System.out.println((end - start) + ", cnt: " + closestPair.cnt);
-            }
+            System.out.print(n + ", " + (end - start) + ", ");
+
+
+            start = System.currentTimeMillis();
+            bruteForce(points);
+            end = System.currentTimeMillis();
+
+            System.out.println((end - start));
+            n += 5000;
+
         }
-        System.out.println((double) sum/100);
     }
 
 }

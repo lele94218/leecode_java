@@ -1,5 +1,6 @@
 package com.terryx.leecode;
 
+import com.terryx.main.ListNode;
 import com.terryx.main.Main;
 
 import java.util.*;
@@ -10,19 +11,6 @@ import java.util.*;
 public class Solution23 {
 
 
-    public static class ListNode {
-        public int val;
-        public ListNode next;
-
-        public ListNode(int x) {
-            val = x;
-        }
-
-        @Override
-        public String toString() {
-            return ("[" + val + "]");
-        }
-    }
 
     public class Heap {
         ListNode[] queue;
