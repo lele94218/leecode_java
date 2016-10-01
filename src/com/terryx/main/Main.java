@@ -1,7 +1,9 @@
 package com.terryx.main;
 
 import com.terryx.leecode.Solution19;
+import com.terryx.leecode.Solution206;
 import com.terryx.leecode.Solution218;
+import com.terryx.leecode.Solution234;
 
 import java.math.BigInteger;
 import java.util.*;
@@ -37,7 +39,7 @@ public class Main {
                         stack.push(String.valueOf(a * b));
                         break;
                     case 3:
-                        stack.push(String.valueOf((int)Math.pow(b, a)));
+                        stack.push(String.valueOf((int) Math.pow(b, a)));
                         break;
                 }
             }
@@ -50,15 +52,11 @@ public class Main {
     }
 
     public static void main(String args[]) {
-        Solution19 solution19 = new Solution19();
+        Solution234 solution234 = new Solution234();
         ListNode head = new ListNode(1);
-        head.next = new ListNode(2);
-        head = solution19.removeNthFromEndSmart(head, 1);
-        System.out.println("ans: ");
-        while (head != null) {
-            System.out.println(head);
-            head = head.next;
-        }
+        head.next = new ListNode(0);
+        head.next.next = new ListNode(2);
+        System.out.println(solution234.isPalindrome(head));
     }
 
 }
