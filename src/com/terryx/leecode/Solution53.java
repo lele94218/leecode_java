@@ -7,7 +7,7 @@ import com.terryx.main.Utils;
  */
 public class Solution53 {
     private int[] a;
-    int solveIt(int left, int right) {
+    private int solveIt(int left, int right) {
         if (left >= right) return a[left];
         int mid = (left + right) / 2;
         int left_max = solveIt(left, mid - 1);
@@ -17,7 +17,7 @@ public class Solution53 {
         return Math.max(left_max, Math.max(right_max, mid_max));
 
     }
-    int solveMid(int mid, int left, int right) {
+    private int solveMid(int mid, int left, int right) {
 
         int res1 = -999999999;
         int tmp = 0;
