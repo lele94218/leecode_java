@@ -1,31 +1,24 @@
 package com.terryx.main;
 
-import com.terryx.leecode.*;
+import com.terryx.leecode.Solution109;
+import com.terryx.leecode.Solution92;
+
+import java.sql.SQLException;
 
 /**
  * @author xueta on 8/25/2016 8:06 AM.
  */
 public class Main {
-    public static void main(String args[]) {
-        Solution61 solution61 = new Solution61();
-        ListNode head = new ListNode(1);
-        head.next = new ListNode(4);
-        head.next.next = new ListNode(3);
+    private final Object finalizerGuardian = new Object() {
+        @Override
+        protected void finalize() throws Throwable {
+            super.finalize();
+        }
+    };
 
-//        ListNode head1 = new ListNode(5);
-//        head1.next = new ListNode(6);
-//        head1.next.next = new ListNode(4);
-
-        ListNode cur = head;
-        System.out.println(cur);
-        head = head.next;
-        System.out.println(cur);
-        System.out.println(head);
-//        while (head != null) {
-//            System.out.println(head);
-//            head = head.next;
-//        }
-
+    public static void main(String args[]) throws SQLException {
+        Solution109 solution109 = new Solution109();
+        solution109.sortedListToBST(new ListNode(0));
     }
 
 }
