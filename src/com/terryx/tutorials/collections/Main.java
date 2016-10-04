@@ -7,6 +7,7 @@ import java.util.*;
  */
 public class Main {
     public static void main(String args[]) {
+        //
         HashMap<String, String> hashMap = new HashMap<>();
         List<Integer> list = new LinkedList<>();
         PriorityQueue<Integer> queue;
