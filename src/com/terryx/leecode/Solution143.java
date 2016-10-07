@@ -7,41 +7,34 @@ import com.terryx.main.ListNode;
  */
 public class Solution143 {
     public void reorderList(ListNode head) {
-        int cnt = 0;
-        ListNode cur = head;
-        while (cur != null) {
-            cnt++;
-            cur = cur.next;
+        if (head == null) return;
+        ListNode p1 = head;
+        ListNode p2 = head;
+        while (p1.next != null && p2.next.next != null) {
+            p1 = p1.next;
+            p2 = p2.next.next;
         }
-        int half = (cnt + 1) / 2;
-        if (cnt % 2 > 0) half++;
-        cnt = 0;
-        cur = head;
-        ListNode second = head;
-        while (cur != null) {
-            cnt ++;
-            if (cnt == half) {
-                second = cur;
-                break;
-            }
-            cur = cur.next;
+
+        ListNode preMid = p1;
+        ListNode preCur = p1.next;
+
+        if (preCur == null) return;
+
+        while (preCur.next != null) {
+            ListNode cur = preCur.next;
+            preCur.next = cur.next;
+            cur.next = preMid.next;
+            preMid.next = cur;
         }
-        cur = head;
-        ListNode halfP = second;
-        ListNode start = new ListNode(0);
-        while (cur != halfP) {
-            if (second == null) {
-                start.next = cur;
-                cur.next = null;
-                break;
-            } else {
-                start.next = cur;
-                ListNode next = cur.next;
-                cur.next = second;
-                start = second;
-                cur = next;
-                second = second.next;
-            }
+
+        p1 = head;
+        p2 = preMid.next;
+        while (p1 != preMid) {
+            preMid.next = p2.next;
+            p2.next = p1.next;
+            p1.next = p2;
+            p1 = p2.next;
+            p2 = preMid.next;
         }
     }
 }
