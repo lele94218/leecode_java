@@ -1,7 +1,6 @@
 package com.terryx.main;
 
-import com.terryx.leecode.Solution109;
-import com.terryx.leecode.Solution92;
+import com.terryx.leecode.Solution147;
 
 import java.sql.SQLException;
 
@@ -9,36 +8,14 @@ import java.sql.SQLException;
  * @author xueta on 8/25/2016 8:06 AM.
  */
 public class Main {
-    static void StairCase(int n) {
-        for (int i = n - 1; i >= 0; --i) {
-            String ss = "";
-            for (int j = 0; j < i; ++ j) {
-                ss += " ";
-            }
-            for (int j = 0; j < n - i; ++ j) {
-                ss += "#";
-            }
-            System.out.println(ss);
-        }
-    }
-
-    static int sum(int[] numbers) {
-        long sum = 0;
-        for (int a : numbers) {
-            sum += (long) a;
-        }
-        return (int)sum;
-    }
-
-    private final Object finalizerGuardian = new Object() {
-        @Override
-        protected void finalize() throws Throwable {
-            super.finalize();
-        }
-    };
 
     public static void main(String args[]) throws SQLException {
-        StairCase(1);
+        Solution147 solution147 = new Solution147();
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(5);
+        head.next.next.next = new ListNode(4);
+        solution147.insertionSortList(head);
     }
 
 }
