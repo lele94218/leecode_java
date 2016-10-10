@@ -70,7 +70,7 @@ public class ClosestPair {
                 aux[m++] = pointsByY[i];
         }
         for (int i = 0; i < m; ++i) {
-            for (int j = i + 1; j < m && (aux[j].y() - aux[i].y() > 0); ++j) {
+            for (int j = i + 1; j < m && (aux[j].y() - aux[i].y() < delta); ++j) {
                 cnt++;
                 double distance = aux[i].distanceTo(aux[j]);
 //                System.out.println(distance);
