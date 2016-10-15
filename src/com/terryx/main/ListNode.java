@@ -6,6 +6,15 @@ package com.terryx.main;
 public class ListNode {
     public int val;
     public ListNode next;
+    private int s;
+
+    public int getS() {
+        return s;
+    }
+
+    public ListNode() {
+        System.out.println("wwwwwwww");
+    }
 
     public ListNode(int x) {
         val = x;

@@ -10,6 +10,8 @@ import java.sql.SQLException;
 public class Main {
 
     public static void main(String args[]) throws SQLException {
+        Utils utils = new Utils();
+        utils.a = 4;
         Solution147 solution147 = new Solution147();
         ListNode head = new ListNode(1);
         head.next = new ListNode(2);
