@@ -10,5 +10,6 @@ import java.util.List;
 public class Solution95 {
     public List<TreeNode> generateTrees(int n) {
         return null;
+
     }
 }
