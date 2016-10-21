@@ -14,9 +14,22 @@ public class Solution300 {
             if (num > stack.peek()) {
                 stack.push(num);
             } else {
-                Collections.binarySearch(stack, num);
+                int low = 0;
+                int high = stack.size() - 1;
+                while (low <= high) {
+                    int mid = (low + high) >> 1;
+                    if (stack.get(mid) < num) {
+                        low = mid + 1;
+                    } else if (stack.get(mid) > num) {
+                        high = mid - 1;
+                    } else {
+                        low = mid;
+                        break;
+                    }
+                }
+                stack.set(low, num);
             }
         }
-        return -1;
+        return stack.size() - 1;
     }
 }
