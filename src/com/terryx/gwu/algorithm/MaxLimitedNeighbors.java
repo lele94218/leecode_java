@@ -1,5 +1,7 @@
 package com.terryx.gwu.algorithm;
 
+import java.util.Random;
+
 /**
  * You are given an array a[1..n] of positive numbers and an integer k. You have to produce an
  * array b[1..n], such that: (i) For each j, b[j] is 0 or 1, (ii) Array b has adjacent 1s at most
@@ -36,7 +38,16 @@ public class MaxLimitedNeighbors {
     }
 
     public static void main(String args[]) {
-        int a[] = new int[]{1,2,3,4,5,6};
-        System.out.println(solve(a, 6));
+        int N = 1000000;
+        int a[] = new int[N + 1];
+        Random random = new Random();
+        for (int i = 0; i < N; ++i) {
+            a[i] = random.nextInt() % 100;
+        }
+        long t = System.currentTimeMillis();
+        int res = solve(a, 100);
+        long now = System.currentTimeMillis();
+        System.out.println(res + ", " + (now - t));
+
     }
 }
