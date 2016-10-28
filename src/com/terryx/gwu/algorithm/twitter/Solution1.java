@@ -103,14 +103,18 @@ public class Solution1 {
                 Log log = map.get(code);
                 log.addTotalCnt();
                 log.setDate(date);
-                if (!resStr.contains("500")) {
+                if (!(resStr.contains("500") || resStr.contains("501") || resStr.contains("502") || resStr.contains("503") ||
+                        resStr.contains("504") || resStr.contains("505") || resStr.contains("506") || resStr.contains("507") ||
+                        resStr.contains("508") || resStr.contains("509"))) {
                     log.addSuccessCnt();
                 }
             } else {
                 Log log = new Log(urlStr);
                 log.addTotalCnt();
                 log.setDate(date);
-                if (!resStr.contains("500")) {
+                if (!(resStr.contains("500") || resStr.contains("501") || resStr.contains("502") || resStr.contains("503") ||
+                        resStr.contains("504") || resStr.contains("505") || resStr.contains("506") || resStr.contains("507") ||
+                        resStr.contains("508") || resStr.contains("509"))) {
                     log.addSuccessCnt();
                 }
                 map.put(code, log);
