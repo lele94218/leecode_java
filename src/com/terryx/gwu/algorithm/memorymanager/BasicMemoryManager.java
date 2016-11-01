@@ -154,7 +154,10 @@ public class BasicMemoryManager {
 
 
     public static void main(String args[]) {
-        if (args.length > 2) System.err.format("Usage: java memman <pool-size> <num-recs> <command-file>\n");
+        if (args.length > 2) {
+            System.err.format("Usage: java memman <pool-size> <num-recs> <command-file>\n");
+            return;
+        }
         BasicMemoryManager basicMemoryManager = new BasicMemoryManager();
         BasicMemoryManager.Memory memory =
                 basicMemoryManager.new Memory(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
