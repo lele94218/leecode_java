@@ -1,9 +1,9 @@
-# Java Things
+Java Things:
 
-## [Leetcode with Java](https://leetcode.com/lele94218/)
+### 1. [Leetcode with Java](https://leetcode.com/lele94218/)
 
-## Java Threads
+### 2. [Java Threads](http://shop.oreilly.com/product/9780596007829.do)
 
-## Java Tutorials
+### 3. [Java Tutorials](https://docs.oracle.com/javase/tutorial/)
 
-## Effective Java
+### 4. [Effective Java](https://www.amazon.com/Effective-Java-2nd-Joshua-Bloch/dp/0321356683)
