@@ -30,7 +30,7 @@ public class CharacterDisplayCanvas extends JComponent implements CharacterListe
     }
 
 
-    public Dimension preferredSize() {
+    public Dimension getPreferredSize() {
         return new Dimension(fm.getMaxAscent() + 10,
                 fm.getMaxAdvance() + 10);
 

@@ -19,6 +19,7 @@ public class MaxLimitedNeighbors {
     public static int solve(int[] a, int k) {
         int n = a.length;
         int dp[][] = new int[k + 1][n + 1];
+        System.out.println(dp.length * dp[0].length);
         //init k = 0
         for (int i = 0; i < n; ++i) {
             if (i > 1)

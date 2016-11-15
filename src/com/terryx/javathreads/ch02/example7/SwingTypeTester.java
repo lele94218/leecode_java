@@ -1,4 +1,4 @@
-package com.terryx.javathreads.ch02.example4;
+package com.terryx.javathreads.ch02.example7;
 
 import com.terryx.javathreads.ch02.CharacterDisplayCanvas;
 import com.terryx.javathreads.ch02.CharacterEventHandler;
@@ -9,20 +9,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-/**
- * @author taoranxue on 11/13/16 8:35 PM.
- */
-
-
-public class SwingTypeTester extends JFrame implements CharacterSource  {
+public class SwingTypeTester extends JFrame implements CharacterSource {
 
     protected RandomCharacterGenerator producer;
-    private CharacterDisplayCanvas displayCanvas;
+    private AnimatedCharacterDisplayCanvas displayCanvas;
     private CharacterDisplayCanvas feedbackCanvas;
     private JButton quitButton;
     private JButton startButton;
     private JButton stopButton;
-
     private CharacterEventHandler handler;
 
     public SwingTypeTester() {
@@ -31,7 +25,7 @@ public class SwingTypeTester extends JFrame implements CharacterSource  {
 
     private void initComponents() {
         handler = new CharacterEventHandler();
-        displayCanvas = new CharacterDisplayCanvas();
+        displayCanvas = new AnimatedCharacterDisplayCanvas();
         feedbackCanvas = new CharacterDisplayCanvas(this);
         quitButton = new JButton();
         startButton = new JButton();
@@ -39,12 +33,13 @@ public class SwingTypeTester extends JFrame implements CharacterSource  {
         add(displayCanvas, BorderLayout.NORTH);
         add(feedbackCanvas, BorderLayout.CENTER);
         JPanel p = new JPanel();
-        startButton.setText("Start");
-        quitButton.setText("Quit");
-        stopButton.setText("Stop");
+        startButton.setLabel("Start");
+        stopButton.setLabel("Stop");
+        stopButton.setEnabled(false);
+        quitButton.setLabel("Quit");
         p.add(startButton);
-        p.add(quitButton);
         p.add(stopButton);
+        p.add(quitButton);
         add(p, BorderLayout.SOUTH);
 
         addWindowListener(new WindowAdapter() {
@@ -65,9 +60,22 @@ public class SwingTypeTester extends JFrame implements CharacterSource  {
                 producer = new RandomCharacterGenerator();
                 displayCanvas.setCharacterSource(producer);
                 producer.start();
+                displayCanvas.setDone(false);
+                Thread t = new Thread(displayCanvas);
+                t.start();
                 startButton.setEnabled(false);
+                stopButton.setEnabled(true);
                 feedbackCanvas.setEnabled(true);
                 feedbackCanvas.requestFocus();
+            }
+        });
+        stopButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                startButton.setEnabled(true);
+                stopButton.setEnabled(false);
+                producer.setDone();
+                displayCanvas.setDone(true);
+                feedbackCanvas.setEnabled(false);
             }
         });
         quitButton.addActionListener(new ActionListener() {
@@ -75,15 +83,8 @@ public class SwingTypeTester extends JFrame implements CharacterSource  {
                 quit();
             }
         });
-        stopButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                startButton.setEnabled(true);
-                stopButton.setEnabled(false);
-                producer.setDone();
-                feedbackCanvas.setEnabled(false);
-            }
-        });
+
+
         pack();
     }
 
@@ -108,8 +109,6 @@ public class SwingTypeTester extends JFrame implements CharacterSource  {
     }
 
     public static void main(String args[]) {
-        new SwingTypeTester().setVisible(true);
+        new SwingTypeTester().show();
     }
 }
-
-
