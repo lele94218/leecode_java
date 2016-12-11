@@ -102,7 +102,6 @@ public class BasicMemoryManager {
         public boolean remove(int id) {
             if (id < 0 || id >= size) return false;
 
-//            System.out.println("remove");
             Block removeBlock = blocks.get(id);
             int handleValue = removeBlock.handle;
             int lengthValue = removeBlock.length;
