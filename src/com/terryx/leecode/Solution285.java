@@ -7,6 +7,14 @@ import com.terryx.main.TreeNode;
  */
 public class Solution285 {
     public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
-        return null;
+        if (root == null)
+            return null;
+
+        if (root.val <= p.val) {
+            return inorderSuccessor(root.right, p);
+        } else {
+            TreeNode left = inorderSuccessor(root.left, p);
+            return (left != null) ? left : root;
+        }
     }
 }
