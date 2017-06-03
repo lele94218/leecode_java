@@ -114,6 +114,7 @@ public class GaTsp {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
         };
+
         int m = distance.length;
         int n = distance[0].length;
         for (int i = 0; i < m; ++i) {
@@ -123,6 +124,12 @@ public class GaTsp {
                 }
             }
         }
+
+//        for (int i = 0; i < m; ++ i) {
+//            for (int j = 0; j < n; ++ j) {
+//                if (distance[i][j] == 0) distance[i][j] = Integer.MAX_VALUE;
+//            }
+//        }
 
         bestLength = Integer.MAX_VALUE;
         bestTour = new int[cityNum + 1];
@@ -175,9 +182,11 @@ public class GaTsp {
         int len = 0;
         // 染色体，起始城市,城市1,城市2...城市n
         for (int i = 1; i < cityNum; i++) {
+            if (distance[chromosome[i - 1]][chromosome[i]] == 0) return Integer.MAX_VALUE;
             len += distance[chromosome[i - 1]][chromosome[i]];
         }
         // 城市n,起始城市
+        if (distance[chromosome[cityNum - 1]][chromosome[0]] == 0) return Integer.MAX_VALUE;
         len += distance[chromosome[cityNum - 1]][chromosome[0]];
         return len;
     }
@@ -589,7 +598,7 @@ public class GaTsp {
          * @param c 交叉率
          * @param m 变异率
          **/
-        GaTsp ga = new GaTsp(300, 20, 30000, 0.7f, 0.9f);
+        GaTsp ga = new GaTsp(100, 20, 300000, 0.8f, 0.8f);
         ga.init();
         ga.solve();
 //        System.out.println(ga.evaluate(new int[]{3,1,14,4,10,19,17,13,16,8,18,12,11,6,2,9,5,0,7,15}));
