@@ -12,8 +12,11 @@ import java.util.TimeZone;
  */
 public class Main implements Cloneable {
     public static void main(String args[]) {
-        Solution591 solution591 = new Solution591();
-        System.out.println(solution591.isValid("<DIV>  div tag is not closed.  <DIV>"));
+        TreeNode a = null;
+        TreeNode b = null;
+        b = new TreeNode(9);
+        System.out.println(a.val);
+        System.out.println(b.val);
 
     }
 
