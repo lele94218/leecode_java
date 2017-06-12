@@ -7,38 +7,36 @@ import java.util.HashMap;
  */
 public class Solution616 {
     public String addBoldTag(String s, String[] dict) {
-        return null;
-    }
-    public String addBoldTag1(String s, String[] dict) {
-        StringBuffer sb = new StringBuffer();
-        int[] dp = new int[s.length()];
-        for (int i = 0; i < dict.length; i++) {
+        int dp[] = new int[s.length()];
+        for (int i = 0; i < dict.length; ++i) {
             int index = s.indexOf(dict[i]);
             while (index >= 0) {
-                dp[index] = Math.max(dp[index], dict[i].length());
+                dp[index] = dict[i].length();
                 index = s.indexOf(dict[i], index + 1);
             }
         }
+        StringBuilder res = new StringBuilder();
         int start = 0;
         while (start < s.length()) {
             if (dp[start] == 0) {
-                sb.append(s.charAt(start));
+                res.append(s.charAt(start));
                 start++;
             } else {
-                int formerStart = start;
                 int end = start + dp[start];
-                while (start != end) {
+                int begin = start;
+                while (start < end) {
                     int cur = start;
-                    while (cur < s.length() && dp[cur] != 0) {
-                        cur = dp[cur] + cur;
+                    while (cur < s.length() && dp[cur] > 0) {
+                        cur = cur + dp[cur];
                     }
                     end = Math.max(end, cur);
                     start++;
                 }
-                sb.append("<b>" + s.substring(formerStart, start) + "</b>");
+                res.append("<b>").append(s.substring(begin, start)).append("</b>");
             }
         }
-        return sb.toString();
+
+        return res.toString();
     }
 }
 
