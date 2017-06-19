@@ -45,11 +45,11 @@ public class FuelInjectionPerfection {
 //                System.out.print(1);
                 oneCnt++;
             }
-            System.out.println("=" + cnt);
+//            System.out.println("=" + cnt);
             bn = bn.divide(two);
         }
-        System.out.println(oneCnt);
-        System.out.println();
+//        System.out.println(oneCnt);
+//        System.out.println();
         if (oneCnt <= 2) {
             if (oneCnt > 0) oneCnt--;
             if (oneCnt == 1) {
