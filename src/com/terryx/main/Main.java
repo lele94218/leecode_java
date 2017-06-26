@@ -9,36 +9,24 @@ import java.util.*;
 /**
  * @author xueta on 8/25/2016 8:06 AM.
  */
-public class Main implements Cloneable {
+public class Main {
+    public static final int A = 0;
+    public static final int B = 1;
+    public static final int C = 2;
 
-    public static int answer(int total_lambs) {
+    private static int identify(String ip) {
+        String[] seg = ip.split("\\.");
+        int a = Integer.parseInt(seg[0]);
 
-        // Your code goes here.
-        int f1 = 1, f2 = 1;
-        int a1 = 1;
-        int fcnt = 1, acnt = 0;
-        while ((2*f2 + f1 - 1) <= total_lambs) {
-            int tmp = f2;
-            f2 = f1 + f2;
-            f1 = tmp;
-            fcnt ++;
-        }
-
-        while ((2 * a1 - 1) <= total_lambs || (a1  >= 4 && a1/2 + a1/4 + a1 - 1 <= total_lambs)) {
-            a1 *= 2;
-            acnt ++;
-        }
-        System.out.println(fcnt + " " + acnt);
-        return fcnt - acnt;
-
+        if (a <= 127 && a >= 0) return A;
+        if (a <= 191 && a >= 128) return B;
+        if (a <= 233 && a >= 192) return C;
+        return -1;
     }
 
     public static void main(String args[]) {
-        System.out.println("m");
-        System.out.println(answer(13));
-
-
+        System.out.println(identify("192.168.1.1"));
+        System.out.println(identify("192.e168.1.122"));
     }
-
 
 }
