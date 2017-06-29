@@ -1,5 +1,7 @@
 package com.terryx.leecode.contest38;
 
+import java.net.Socket;
+
 /**
  * @author taoranxue on 6/24/17 10:21 PM.
  */
