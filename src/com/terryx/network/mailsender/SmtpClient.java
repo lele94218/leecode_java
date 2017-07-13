@@ -16,29 +16,27 @@ public class SmtpClient {
         System.out.println("-------------------------------------");
 
         Email email = new Email();
-        System.out.println("\n\n\n\n");
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Your Gmail username (username@gmail.com):");
-        String username = scanner.nextLine();
-        System.out.println("Your Gmail password:");
-        String password = scanner.nextLine();
-        System.out.println("To:");
-        String sendTo = scanner.nextLine();
-        System.out.println("Subject:");
-        String subject = scanner.nextLine();
-        System.out.println("Text:");
-        String text = scanner.nextLine();
-
-        email.setUsername(username);
-        email.setPassword(password);
-        email.setSendTo(sendTo);
-        email.setSubject(subject);
-        email.setText(text);
+//        System.out.println("\n\n\n\n");
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("Your Gmail username (username@gmail.com):");
+//        String username = scanner.nextLine();
+//        System.out.println("Your Gmail password:");
+//        String password = scanner.nextLine();
+//        System.out.println("To:");
+//        String sendTo = scanner.nextLine();
+//        System.out.println("Subject:");
+//        String subject = scanner.nextLine();
+//        System.out.println("Text:");
+//        String text = scanner.nextLine();
+//
+//        email.setUsername(username);
+//        email.setPassword(password);
+//        email.setSendTo(sendTo);
+//        email.setSubject(subject);
+//        email.setText(text);
 
         Smtp smtp = new Smtp(email);
         smtp.send();
-        System.out.println("----------------LOG------------------");
-        System.out.println("----------------END------------------");
     }
 
 }

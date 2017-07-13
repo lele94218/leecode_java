@@ -10,37 +10,35 @@ import java.util.*;
  * @author xueta on 8/25/2016 8:06 AM.
  */
 public class Main {
-    public static final Object lock = new Object();
 
-    public static void main(String args[]) {
-        Thread thread = new Thread(new Runnable() {
+    public static void main(String args[]) throws InterruptedException {
+        Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
-                synchronized (this) {
+                while (true) {
+                    synchronized (Main.class) {
+                        System.out.println("thread-1");
+//                        Main.class.notifyAll();
+                    }
                     try {
-                        int total = 0;
-                        for (int i = 0; i < 10000; ++i) {
-                            total += i;
-                        }
-                        Thread.sleep(3000);
-                        System.out.println("new thread running " + total);
-                        this.notify();
-                    } catch (Exception e) {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+
                 }
             }
         });
-        thread.start();
+        t.start();
 
-        synchronized (thread) {
-            try {
-                System.out.println("wait new thread");
-                thread.wait();
-                System.out.println("finally");
-            } catch (Exception e) {
-                e.printStackTrace();
+        while (true) {
+            synchronized (Main.class) {
+                System.out.println("thread-0");
+                Main.class.wait();
+//                t.join();
             }
+            Thread.sleep(400);
+
         }
     }
 
