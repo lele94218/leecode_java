@@ -18,3 +18,13 @@ hs_err_pid*
 /out/
 /leecode_jv.iml
 /leecode_java.iml
+/outagain.txt
+/characteroutput.txt
+META-INF/
+characteroutput.txt
+lib/
+outagain.txt
+src/META-INF/
+src/com/.DS_Store
+src/com/terryx/.DS_Store
+src/com/terryx/gwualgorithm/.DS_Store
