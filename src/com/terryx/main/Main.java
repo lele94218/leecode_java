@@ -13,24 +13,23 @@ import java.util.*;
 public class Main {
 
     public static void main(String args[]) throws InterruptedException {
-        int[] a = new int[]{1, 1, 1, 2, 3, 4, 4, 7, 7, 7};
-        int low = 0, high = a.length - 1, mid = 0, target = 6;
+        int[] a = new int[]{0,1};
+        int low = 0, high = a.length - 1, mid = 0, target = 1;
         while (low < high) {
+            System.out.println(low + " " + high);
             mid = (low + high) / 2;
             if (target == a[mid]) {
-                System.out.println("ok");
+                low = mid;
                 break;
             }
             if (a[mid] < target) {
-                low = mid + 1;
+                low = mid;
             } else if (a[mid] > target) {
-                high = mid;
+                high = mid - 1;
             }
         }
 
-        System.out.println(low + ": " + a[low] + ", "
-                + mid + ": " + a[mid] + ", "
-                + high + ": " + a[high]);
+        System.out.println(low + ": " + a[low]);
     }
 
 }
