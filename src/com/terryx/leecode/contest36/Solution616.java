@@ -1,7 +1,5 @@
 package com.terryx.leecode.contest36;
 
-import java.util.HashMap;
-
 /**
  * @author taoranxue on 6/10/17 11:25 PM.
  */
