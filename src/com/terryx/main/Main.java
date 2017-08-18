@@ -13,23 +13,9 @@ import java.util.*;
 public class Main {
 
     public static void main(String args[]) throws InterruptedException {
-        int[] a = new int[]{0,1};
-        int low = 0, high = a.length - 1, mid = 0, target = 1;
-        while (low < high) {
-            System.out.println(low + " " + high);
-            mid = (low + high) / 2;
-            if (target == a[mid]) {
-                low = mid;
-                break;
-            }
-            if (a[mid] < target) {
-                low = mid;
-            } else if (a[mid] > target) {
-                high = mid - 1;
-            }
-        }
-
-        System.out.println(low + ": " + a[low]);
+        System.out.println((1.0/31));
+        Set set;
+        StringBuilder s;
     }
 
 }
