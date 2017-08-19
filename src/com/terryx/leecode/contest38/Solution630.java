@@ -1,10 +1,7 @@
 package com.terryx.leecode.contest38;
 
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * @author taoranxue on 6/24/17 9:36 PM.
@@ -12,12 +9,6 @@ import java.util.Queue;
 public class Solution630 {
 
     public int scheduleCourse(int[][] courses) {
-        Arrays.sort(courses, new Comparator<int[]>() {
-            @Override
-            public int compare(int[] a, int[] b) {
-                return a[0] - b[0];
-            }
-        });
 
         Queue<Integer> queue = new PriorityQueue<>(new Comparator<Integer>() {
             @Override
