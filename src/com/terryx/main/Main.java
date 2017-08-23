@@ -1,5 +1,6 @@
 package com.terryx.main;
 
+import com.terryx.leecode.Solution151;
 import com.terryx.leecode.contest35.Solution591;
 import com.terryx.leecode.contest42.Solution648;
 
@@ -13,9 +14,7 @@ import java.util.*;
 public class Main {
 
     public static void main(String args[]) throws InterruptedException {
-        System.out.println((1.0/31));
-        Set set;
-        StringBuilder s;
+        System.out.println(new Solution151().reverseWords("1fjsdlflk    f  "));
     }
 
 }
