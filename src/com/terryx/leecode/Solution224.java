@@ -69,6 +69,8 @@ public class Solution224 {
     }
 
     public int calculate(String s) {
+        Stack stack;
+
         if (s == null || s.length() == 0) return 0;
         tokens = new ArrayList<>();
 
