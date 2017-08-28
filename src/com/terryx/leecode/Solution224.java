@@ -69,11 +69,10 @@ public class Solution224 {
     }
 
     public int calculate(String s) {
-        Stack stack;
 
         if (s == null || s.length() == 0) return 0;
         tokens = new ArrayList<>();
-
+        Set set = new HashSet<>();
         String st = "";
         for (int i = 0; i < s.length(); ++i) {
             char c = s.charAt(i);
