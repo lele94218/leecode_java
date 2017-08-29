@@ -14,7 +14,8 @@ import java.util.*;
 public class Main {
 
     public static void main(String args[]) throws InterruptedException {
-        System.out.println(new Solution151().reverseWords("1fjsdlflk    f  "));
+        int low = 2, high = 3;
+        System.out.println(low + (high - low) >> 1);
     }
 
 }
