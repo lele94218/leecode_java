@@ -15,12 +15,7 @@ import java.util.*;
 public class Main {
 
     public static void main(String args[]) throws InterruptedException {
-        for (int i = 1; i <= 6; i ++) {
-            for (int j = 1; j <= 20; ++ j) {
-
-                System.out.println(new Solution672().flipLights(i , j));
-            }
-        }
+        System.out.println(Double.MAX_VALUE + " " + Double.MIN_VALUE);
     }
 
 }
