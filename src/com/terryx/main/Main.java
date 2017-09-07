@@ -15,7 +15,11 @@ import java.util.*;
 public class Main {
 
     public static void main(String args[]) throws InterruptedException {
-        System.out.println(Double.MAX_VALUE + " " + Double.MIN_VALUE);
+        int i = -1;
+        while (i != 0) {
+            System.out.println(Integer.toBinaryString(i) + " " + i);
+            i <<= 1;
+        }
     }
 
 }
