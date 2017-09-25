@@ -8,6 +8,7 @@ import com.terryx.leecode.contest50.Solution677;
 import com.terryx.leecode.contest50.Solution678;
 import com.terryx.leecode.contest50.Solution679;
 import com.terryx.leecode.contest50.Solution680;
+import com.terryx.leecode.lcode.design.Tictactoe;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -18,8 +19,8 @@ import java.util.*;
  */
 public class Main {
     public static void main(String args[]) throws InterruptedException {
-        Solution679 solution679 = new Solution679();
-        System.out.println(solution679.judgePoint24(new int[]{1,2,1,2}));
+        Tictactoe tictactoe = new Tictactoe();
+        tictactoe.play();
     }
 
 }
