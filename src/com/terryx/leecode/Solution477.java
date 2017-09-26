@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * @author taoranxue on 9/6/17 3:00 PM.
  */
-public class Solution447 {
+public class Solution477 {
     public int totalHammingDistance(int[] nums) {
         if (nums == null || nums.length == 0) return 0;
         int res = 0;
