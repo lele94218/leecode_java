@@ -8,6 +8,29 @@ import java.util.Stack;
  */
 public class Solution300 {
     public int lengthOfLIS(int[] nums) {
+        if (nums == null || nums.length == 0) return 0;
+        Stack<Integer> stack = new Stack<>();
+        stack.push(Integer.MIN_VALUE);
+        for (int i = 0; i < nums.length; ++ i) {
+            if (nums[i] > stack.peek()) {
+                stack.push(nums[i]);
+            } else {
+                int low = 0, high = stack.size() - 1, target = nums[i];
+                while (low < high) {
+                    int mid = low + (high - low >>> 1);
+                    int midVal = stack.get(mid);
+                    if (target <= midVal) {
+                        high = mid;
+                    } else {
+                        low = mid + 1;
+                    }
+                }
+                stack.set(low, target);
+            }
+        }
+        return stack.size() - 1;
+    }
+    public int lengthOfLIS1(int[] nums) {
         Stack<Integer> stack = new Stack<>();
         stack.push(Integer.MIN_VALUE);
         for (int num : nums) {

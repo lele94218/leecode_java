@@ -8,6 +8,20 @@ import java.util.List;
  */
 public class Solution121 {
     public int maxProfit(int[] prices) {
+        if (prices == null || prices.length == 0) return 0;
+        int ans = 0;
+        int low = prices[0];
+        for (int i = 1; i < prices.length; ++i) {
+            if (prices[i] < low) {
+                low = prices[i];
+            } else {
+                ans = Math.max(ans, prices[i] - low);
+            }
+        }
+        return ans;
+    }
+
+    public int maxProfit1(int[] prices) {
         if (prices == null) return 0;
         if (prices.length <= 1) return 0;
         List<Integer> sub = new ArrayList<>();

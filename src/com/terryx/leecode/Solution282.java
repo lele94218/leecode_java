@@ -6,6 +6,39 @@ import java.util.*;
  * @author taoranxue on 9/19/17 4:14 PM.
  */
 public class Solution282 {
+    public List<String> addOperators1(String num, int target) {
+        if (num == null) return new ArrayList<>(0);
+        List<String> ans = new ArrayList<>();
+        helper(num, 0, 0, 0, (long)target, "", ans);
+        return ans;
+    }
+
+    private void helper(String num, int cur, long res, long last, long target, String path, List<String> ans) {
+        if (cur == num.length()) {
+            if (res == target) {
+                ans.add(path);
+            }
+            return;
+        }
+        if (cur == 0) {
+            long t = 0;
+            for (int i = cur; i < num.length(); ++ i) {
+                if (i == cur + 1 && num.charAt(cur) == '0') break;
+                t = t * 10 + num.charAt(i) - '0';
+                helper(num, i + 1, t, t, target, path + t, ans);
+            }
+        } else {
+            long t = 0;
+            for (int i = cur; i < num.length(); ++ i) {
+                if (i == cur + 1 && num.charAt(cur) == '0') break;
+                t = t * 10 + num.charAt(i) - '0';
+                helper(num, i + 1, res + t, t, target, path + "+" + t, ans);
+                helper(num, i + 1, res - t, -t, target, path + "-" + t, ans);
+                helper(num, i + 1, (res - last) + (last * t), last * t, target, path + "*" + t, ans);
+            }
+        }
+    }
+
     public List<String> addOperators(String num, int target) {
         List<String> res = new ArrayList<>();
         if (num == null || num.length() == 0) return res;
