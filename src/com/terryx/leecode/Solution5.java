@@ -6,6 +6,26 @@ import java.util.*;
  * @author taoranxue on 8/19/17 2:44 PM.
  */
 public class Solution5 {
+    public String longestPalindromeDP(String s) {
+        if (s == null || s.length() == 0) return "";
+        int maxLen = 0, start = 0;
+        boolean dp[][] = new boolean[s.length()][s.length()];
+        for (int len = 0; len < s.length(); ++len) {
+            for (int i = 0; i < s.length() - len; ++i) {
+                int j = i + len;
+                if (s.charAt(i) == s.charAt(j)) {
+                    if (len < 3) dp[i][j] = true;
+                    else dp[i][j] = dp[i + 1][j - 1];
+                }
+                if (dp[i][j] && maxLen < len + 1) {
+                    maxLen = len + 1;
+                    start = i;
+                }
+            }
+        }
+        return s.substring(start, start + maxLen);
+    }
+
     public String longestPalindrome(String s) {
         if (s == null || s.length() == 0) return "";
         // O(n^2) Iteration

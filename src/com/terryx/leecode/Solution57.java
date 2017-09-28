@@ -9,6 +9,24 @@ import java.util.*;
  */
 public class Solution57 {
     public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
+        if (intervals == null || intervals == null) return intervals;
+        int index = 0;
+        List<Interval> ans = new ArrayList<>();
+        while (index < intervals.size() && intervals.get(index).end < newInterval.start) {
+            ans.add(intervals.get(index++));
+        }
+        Interval cur = new Interval(newInterval.start, newInterval.end);
+        while (index < intervals.size() && intervals.get(index).start <= newInterval.end) {
+            cur.start = Math.min(cur.start, intervals.get(index).start);
+            cur.end = Math.max(cur.end, intervals.get(index).end);
+            index++;
+        }
+        ans.add(cur);
+        while (index < intervals.size()) ans.add(intervals.get(index++));
+        return ans;
+    }
+
+    public List<Interval> insert1(List<Interval> intervals, Interval newInterval) {
         if (intervals == null) return intervals;
         intervals.add(newInterval);
         Collections.sort(intervals, new Comparator<Interval>() {

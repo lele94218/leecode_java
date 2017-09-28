@@ -64,11 +64,11 @@ public class BinarySearch {
 
     public static void main(String[] args) {
         BinarySearch binarySearch = new BinarySearch();
-        int a[] = new int[]{1, 2, 3, 9};
+        int a[] = new int[]{1, 2, 3, 4, 4, 4, 4, 6, 9};
         int r = -1;
-        r = binarySearch.lower_bound_search(a, 5);
+        r = binarySearch.lower_bound_search(a, 1);
         System.out.println(r + " " + a[r]);
-        r = binarySearch.upper_bound_search(a, 5);
+        r = binarySearch.upper_bound_search(a, 1);
         System.out.println(r + " " + a[r]);
     }
 }

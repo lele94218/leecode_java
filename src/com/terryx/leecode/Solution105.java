@@ -9,6 +9,25 @@ import java.util.Stack;
  */
 public class Solution105 {
     public TreeNode buildTree(int[] preorder, int[] inorder) {
+        return helper(preorder, inorder, 0, 0, inorder.length - 1);
+    }
+
+    private TreeNode helper(int[] preorder, int[] inorder, int preStart, int inStart, int inEnd) {
+        if (inStart > inEnd) return null;
+        // System.out.println(preStart + " " + inStart + " " + inEnd);
+        TreeNode p = new TreeNode(preorder[preStart]);
+        int index = -1;
+        for (int i = inStart; i <= inEnd; ++ i) {
+            if (inorder[i] == p.val) {
+                index = i;
+                break;
+            }
+        }
+        p.left = helper(preorder, inorder, preStart + 1, inStart, index - 1);
+        p.right = helper(preorder, inorder, preStart + index - inStart + 1, index + 1, inEnd);
+        return p;
+    }
+    public TreeNode buildTree1(int[] preorder, int[] inorder) {
         if (preorder.length <= 0) return null;
         Stack<TreeNode> stack = new Stack<>();
         TreeNode root = new TreeNode(preorder[0]);

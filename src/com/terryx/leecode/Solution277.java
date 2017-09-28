@@ -14,17 +14,17 @@ public class Solution277 {
 
     public class Solution extends Relation {
         public int findCelebrity(int n) {
-            int candid = 0;
-            for (int i = 0; i < n; ++i) {
-                if (knows(candid, i)) candid = i;
+            int candidate = 0;
+            for (int i = 1; i < n; ++i) {
+                if (knows(candidate, i)) candidate = i;
             }
             for (int i = 0; i < n; ++i) {
-                if (knows(candid, i)) return -1;
+                if (!knows(i, candidate)) return -1;
             }
-            for (int i = 0; i < n; ++i) {
-                if (!knows(i, candid)) return -1;
+            for (int i = 0; i < candidate; ++i) {
+                if (knows(candidate, i)) return -1;
             }
-            return candid;
+            return candidate;
         }
     }
 }
