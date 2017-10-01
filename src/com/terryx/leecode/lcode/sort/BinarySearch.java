@@ -62,6 +62,58 @@ public class BinarySearch {
         return -1;
     }
 
+    /**
+     * A = {1, 2, 3}, T = 2, return 1
+     * A = {1, 2, 3}, T = 4, return -1
+     * A = {1, 2, 2, 2, 3}, T = 2, return 1
+     *
+     * @param array
+     * @param target
+     * @return
+     */
+    public int firstOccur(int[] array, int target) {
+        if (array == null || array.length == 0) return -1;
+        int left = 0, right = array.length - 1;
+        while (left + 1 < right) {
+            int mid = left + (right - left >>> 1);
+            int midVal = array[mid];
+            if (midVal >= target) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+        if (array[left] == target) return left;
+        if (array[right] == target) return right;
+        return -1;
+    }
+
+    /**
+     * A = {1, 2, 3}, T = 2, return 1
+     * A = {1, 2, 3}, T = 4, return -1
+     * A = {1, 2, 2, 2, 3}, T = 2, return 3
+     *
+     * @param array
+     * @param target
+     * @return
+     */
+    public int lastOccur(int[] array, int target) {
+        if (array == null || array.length == 0) return -1;
+        int left = 0, right = array.length - 1;
+        while (left + 1 < right) {
+            int mid = left + (right - left >>> 1);
+            int midVal = array[mid];
+            if (midVal <= target) {
+                left = mid;
+            } else {
+                right = mid - 1;
+            }
+        }
+        if (array[right] == target) return right;
+        if (array[left] == target) return left;
+        return -1;
+    }
+
     public static void main(String[] args) {
         BinarySearch binarySearch = new BinarySearch();
         int a[] = new int[]{1, 2, 3, 4, 4, 4, 4, 6, 9};
