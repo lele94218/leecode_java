@@ -45,6 +45,54 @@ public class Solution155 {
         }
     }
 
+    class MinStack2 {
+
+        Stack<Integer> values, min;
+        int globalMin;
+
+        public MinStack2() {
+            values = new Stack<>();
+            min = new Stack<>();
+            globalMin = Integer.MIN_VALUE;
+            min.push(globalMin);
+            min.push(Integer.MAX_VALUE);
+        }
+
+        public int pop() {
+            int e = values.pop(), cnt = min.pop();
+            cnt--;
+            if (cnt > 0) {
+                min.push(cnt);
+            } else {
+                min.pop();
+                cnt = min.pop();
+                globalMin = min.peek();
+                min.push(cnt);
+            }
+            return e;
+        }
+
+        public void push(int element) {
+            values.push(element);
+            if (min.size() == 2 || element < globalMin) {
+                min.push(element);
+                min.push(1);
+                globalMin = element;
+            } else {
+                int cnt = min.pop();
+                min.push(cnt + 1);
+            }
+        }
+
+        public int top() {
+            return values.peek();
+        }
+
+        public int getMin() {
+            return globalMin;
+        }
+    }
+
 /**
  * Your MinStack object will be instantiated and called as such:
  * MinStack obj = new MinStack();

@@ -7,34 +7,40 @@ import com.terryx.main.ListNode;
  */
 public class Solution143 {
     public void reorderList(ListNode head) {
-        if (head == null) return;
-        ListNode p1 = head;
-        ListNode p2 = head;
-        while (p1.next != null && p2.next.next != null) {
-            p1 = p1.next;
-            p2 = p2.next.next;
+        if (head == null || head.next == null) return;
+        // split
+        ListNode slow = head, fast = head;
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        ListNode backHead = slow.next;
+        slow.next = null;
+        // reverse back head
+        ListNode cur = backHead, pre = null, next = null;
+        while (cur != null) {
+            next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        ListNode cur1 = head.next, cur2 = pre.next;
+        // merge
+        head.next = pre;
+        ListNode tail = head.next;
+        while (cur1 != null || cur2 != null) {
+            if (cur1 != null) {
+                tail.next = cur1;
+                cur1 = cur1.next;
+                tail = tail.next;
+            }
+
+            if (cur2 != null) {
+                tail.next = cur2;
+                cur2 = cur2.next;
+                tail = tail.next;
+            }
         }
 
-        ListNode preMid = p1;
-        ListNode preCur = p1.next;
-
-        if (preCur == null) return;
-
-        while (preCur.next != null) {
-            ListNode cur = preCur.next;
-            preCur.next = cur.next;
-            cur.next = preMid.next;
-            preMid.next = cur;
-        }
-
-        p1 = head;
-        p2 = preMid.next;
-        while (p1 != preMid) {
-            preMid.next = p2.next;
-            p2.next = p1.next;
-            p1.next = p2;
-            p1 = p2.next;
-            p2 = preMid.next;
-        }
     }
 }

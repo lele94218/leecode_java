@@ -10,13 +10,20 @@ public class RainbowSort {
         // Write your solution here.
         int i = 0, j = 0, k = array.length - 1;
         while (j <= k) {
-            if (array[j] == -1) {
-                swap(array, i++, j++);
-            } else if (array[j] == 0) {
+            System.out.println(i + " " + j + " " + k);
+            if (array[j] == 0) {
                 j++;
-            } else if (array[j] == 1) {
-                swap(array, k--, j);
             }
+            if (j <= k) {
+                if (array[j] == -1) {
+                    swap(array, i++, j++);
+                }
+                if (array[j] == 1) {
+                    swap(array, k--, j);
+                }
+            }
+
+            System.out.println(i + " " + j + " " + k);
         }
         return array;
     }
@@ -25,5 +32,15 @@ public class RainbowSort {
         int tmp = array[i];
         array[i] = array[j];
         array[j] = tmp;
+    }
+
+    public static void main(String[] args) {
+        RainbowSort rainbowSort = new RainbowSort();
+        int array[] = new int[]{1, -1};
+        rainbowSort.rainbowSort(array);
+        for (int i = 0; i < array.length; ++ i) {
+            System.out.print(array[i] + " ");
+        }
+        System.out.println();
     }
 }
