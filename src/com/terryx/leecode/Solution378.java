@@ -1,6 +1,8 @@
 package com.terryx.leecode;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 /**
  * @author taoranxue on 10/15/16 6:26 PM.
@@ -33,19 +35,26 @@ public class Solution378 {
     }
 
     public int kthSmallest(int[][] matrix, int k) {
-        int n = matrix.length;
-        PriorityQueue<Pair> pq = new PriorityQueue<>();
-        for (int j = 0; j < n; ++ j) {
-            pq.offer(new Pair(0, j, matrix[0][j]));
+
+        if (matrix == null || matrix.length == 0) return -1;
+        int m = matrix.length, n = matrix[0].length;
+        Queue<Cell> queue = new PriorityQueue<>(new Comparator<Cell>() {
+            public int compare(Cell a, Cell b) {
+                return a.val - b.val;
+            }
+        });
+
+        for (int i = 0; i < n; ++i) {
+            queue.offer(new Cell(0, i, matrix[0][i]));
         }
-        int result = -1;
-        for (int i = 0; i < k; ++ i) {
-            Pair tmp = pq.poll();
-            result = tmp.val;
-            if (tmp.x + 1 < n)
-                pq.offer(new Pair(tmp.x + 1, tmp.y, matrix[tmp.x + 1][tmp.y]));
+
+        for (int i = 0; i < k - 1; ++i) {
+            Cell cur = queue.poll();
+            if (cur.x + 1 < m) {
+                queue.offer(new Cell(cur.x + 1, cur.y, matrix[cur.x + 1][cur.y]));
+            }
         }
-        return result;
+        return queue.peek().val;
     }
 
     class Pair implements Comparable<Pair> {
@@ -63,5 +72,41 @@ public class Solution378 {
         public int compareTo(Pair other) {
             return this.val - other.val;
         }
+    }
+
+    static class Cell {
+        int x, y, val;
+
+        Cell(int x, int y, int val) {
+            this.x = x;
+            this.y = y;
+            this.val = val;
+        }
+    }
+
+    public int kthSmallest0(int[][] matrix, int k) {
+        if (matrix == null || matrix.length == 0) return -1;
+        int m = matrix.length, n = matrix[0].length;
+        boolean vist[][] = new boolean[m][n];
+        Queue<Cell> queue = new PriorityQueue<>(new Comparator<Cell>() {
+            public int compare(Cell a, Cell b) {
+                return a.val - b.val;
+            }
+        });
+        queue.offer(new Cell(0, 0, matrix[0][0]));
+        vist[0][0] = true;
+        for (int i = 0; i < k - 1; ++i) {
+            Cell cur = queue.poll();
+            int x = cur.x, y = cur.y;
+            if (x + 1 < m && !vist[x + 1][y]) {
+                queue.offer(new Cell(x + 1, y, matrix[x + 1][y]));
+                vist[x + 1][y] = true;
+            }
+            if (y + 1 < n && !vist[x][y + 1]) {
+                queue.offer(new Cell(x, y + 1, matrix[x][y + 1]));
+                vist[x][y + 1] = true;
+            }
+        }
+        return queue.peek().val;
     }
 }
