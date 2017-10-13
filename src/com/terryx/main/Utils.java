@@ -25,4 +25,14 @@ public class Utils extends ListNode {
         str += "\n";
         return str;
     }
+
+    public static String debug(int[] nums) {
+        String str = "";
+        for (int i = 0; i < nums.length; ++ i) {
+            str += nums[i];
+            str += " ";
+        }
+        str += "\n";
+        return str;
+    }
 }
