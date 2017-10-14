@@ -39,23 +39,10 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        int[] nums = new int[]{1,2,3,4,5};
-        int dp[] = new int[nums.length];
-        for (int i = 0; i < nums.length; ++ i) {
-            if (nums[i] % 2 == 0) {
-                dp[i] += 1;
-            }
-
-            if (i - 2 >= 0) {
-
-                if (nums[i] % 2 == 1)
-                    dp[i] += dp[i - 2] + 1 + dp[i - 1];
-                else
-                    dp[i] += dp[i - 2] + dp[i - 1];
-            }
-
-        }
-        System.out.println(dp[nums.length - 1]);
+        int a = 2147483647;
+        int b = 2147483647;
+        int c = a + b;
+        System.out.println(c + " " + (c - a));
     }
 
 }

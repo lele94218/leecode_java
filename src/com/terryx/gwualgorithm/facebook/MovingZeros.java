@@ -49,8 +49,8 @@ public class MovingZeros {
             if (nums[i] == 0) {
                 cntZero++;
             } else {
-                nums[i - cntZero] = nums[i];
                 if (cntZero != 0) {
+                    nums[i - cntZero] = nums[i];
                     nums[i] = 0;
                 }
             }

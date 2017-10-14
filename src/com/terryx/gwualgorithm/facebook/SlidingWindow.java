@@ -69,6 +69,54 @@ public class SlidingWindow {
         return dp[n][nums.length - 1];
     }
 
+    public String minWindow(String s, String t) {
+        if (s == null || t == null) return "";
+        int map[] = new int[256];
+        for (int i = 0; i < t.length(); ++i) {
+            map[t.charAt(i)]++;
+        }
+        int begin = 0, end = 0, len = Integer.MAX_VALUE, start = 0, cnt = t.length();
+        for (; end < s.length(); ++end) {
+            char c = s.charAt(end);
+            if (map[c]-- > 0) { // Note here greater than zero. Special case : ["aa", "aa"];
+                cnt--;
+            }
+            while (cnt == 0) {
+                if (len > end - begin + 1) {
+                    len = end - begin + 1;
+                    start = begin;
+                }
+                char ic = s.charAt(begin);
+                if (map[ic]++ == 0) {
+                    cnt++;
+                }
+                begin++;
+            }
+        }
+        return len == Integer.MAX_VALUE ? "" : s.substring(start, start + len);
+    }
+
+    public int lengthOfLongestSubstringKDistinct(String s, int k) {
+        if (s == null || k == 0) return 0;
+        int map[] = new int[256];
+        int cnt = Math.min(s.length(), k), len = 0, begin = 0, end = 0;
+        for (; end < s.length(); ++ end) {
+            char c = s.charAt(end);
+            if (map[c]++ == 0) {
+                cnt--;
+            }
+            while (cnt < 0) {
+                if (map[s.charAt(begin)]-- == 1) {
+                    cnt++;
+                }
+                begin++;
+            }
+            // Note: check answer here!!!
+            len = Math.max(len, end - begin + 1);
+        }
+        return len;
+    }
+
     public static void main(String[] args) {
         int ans = new SlidingWindow().findNWindowsWithK(new int[]{1, 2, 1, 2, 6, 7, 5, 1}, 3, 1);
         System.out.println(ans);
