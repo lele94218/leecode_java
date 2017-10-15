@@ -8,28 +8,32 @@ import com.terryx.main.ListNode;
 public class Solution234 {
     public boolean isPalindrome(ListNode head) {
         if (head == null) return true;
-        ListNode cur = head;
-        ListNode start = head.next;
-        ListNode half = head;
-
-        while (half.next != null && half.next.next != null) {
-            half = half.next.next;
-            ListNode tmp = cur;
-            cur = start;
-            start = start.next;
-            cur.next = tmp;
+        ListNode slow = head, fast = head;
+        while (fast.next != null && fast.next.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
         }
-
-        if (half.next == null) {
-            cur = cur.next;
-        }
-        System.out.println(cur + " " + start);
-        while (cur != null && start != null) {
-            System.out.println("ok");
-            if (cur.val != start.val) return false;
-            cur = cur.next;
-            start = start.next;
+        ListNode end = reverse(slow.next);
+        slow.next = null;
+        while (head != null && end != null) {
+            if (head.val != end.val) {
+                return false;
+            }
+            head = head.next;
+            end = end.next;
         }
         return true;
+    }
+
+    private ListNode reverse(ListNode head) {
+        if (head == null || head.next == null) return head;
+        ListNode pre = null, cur = head, tmp = null;
+        while (cur != null) {
+            tmp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = tmp;
+        }
+        return pre;
     }
 }

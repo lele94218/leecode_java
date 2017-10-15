@@ -95,4 +95,61 @@ public class MeetingRoom {
         }
         return Arrays.asList(left, right);
     }
+
+    static class Rect {
+        int x0, y0, x1, y1;
+
+        Rect(int x0, int y0, int x1, int y1) {
+            this.x0 = x0;
+            this.y0 = y0;
+            this.x1 = x1;
+            this.y1 = y1;
+        }
+    }
+
+    /**
+     * 几何算法问题。如果给你一堆的矩形， 求重合矩形重合最多的坐标位置。
+     * 我上过一个算法课，大概思路就是做一个二维的meeting room II。 扫描线算法。
+     */
+    public int cnt2DMaxMeetings(Rect[] intervals) {
+        int res = 0;
+        for (Rect rect : intervals) {
+            res = Math.max(cnt1DMaxMeetings(intervals, rect.x0), res);
+        }
+        return res;
+    }
+
+    private int cnt1DMaxMeetings(Rect[] intervals, int target) {
+        List<Integer> begin = new ArrayList<>(), end = new ArrayList<>();
+        for (Rect rect : intervals) {
+            if (rect.x0 <= target && target <= rect.x1) {
+                begin.add(rect.y0);
+                end.add(rect.y1);
+            }
+        }
+        Collections.sort(begin);
+        Collections.sort(end);
+        int p = 0, cnt = 0, res = 0;
+        for (int i = 0; i < begin.size(); ++ i) {
+            if (begin.get(i) <= end.get(p)) {
+                cnt++;
+                res = Math.max(res, cnt);
+            } else {
+                while (begin.get(i) > end.get(p)) {
+                    p++;
+                    cnt--;
+                }
+            }
+        }
+        return res;
+    }
+
+    public static void main(String[] args) {
+        MeetingRoom i = new MeetingRoom();
+        Rect[] intervals = new Rect[3];
+        intervals[0] = new Rect(0,0,1,1);
+        intervals[1] = new Rect(0,0,2,2);
+        intervals[2] = new Rect(1,1,3,3);
+        System.out.println(i.cnt2DMaxMeetings(intervals));
+    }
 }
