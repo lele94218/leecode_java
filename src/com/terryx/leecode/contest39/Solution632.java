@@ -1,62 +1,48 @@
 package com.terryx.leecode.contest39;
 
-import java.util.Comparator;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
  * @author taoranxue on 7/1/17 10:40 PM.
  */
 public class Solution632 {
-    class Node {
-        int i;
-        int j;
-        int num;
+    static class Unit {
+        int val, x, y;
 
-        public Node(int i, int j, int num) {
-            this.i = i;
-            this.j = j;
-            this.num = num;
+        public Unit(int val, int x, int y) {
+            this.val = val;
+            this.x = x;
+            this.y = y;
         }
     }
 
-    public int[] smallestRange(int[][] nums) {
-        PriorityQueue<Node> queue = new PriorityQueue<>(new Comparator<Node>() {
-            @Override
-            public int compare(Node a, Node b) {
-                return a.num - b.num;
+    public int[] smallestRange(List<List<Integer>> nums) {
+        if (nums == null || nums.size() == 0) return new int[0];
+        int max = Integer.MIN_VALUE, len = Integer.MAX_VALUE, end = 0;
+        Queue<Unit> queue = new PriorityQueue<>(new Comparator<Unit>() {
+            public int compare(Unit a, Unit b) {
+                return a.val - b.val;
             }
         });
-        int max = Integer.MIN_VALUE;
-        int min = Integer.MAX_VALUE;
-        for (int i = 0; i < nums.length; ++i) {
-            queue.offer(new Node(i, 0, nums[i][0]));
-            max = Math.min(max, nums[i][0]);
+        for (int i = 0; i < nums.size(); ++i) {
+            int val = nums.get(i).get(0);
+            max = Math.max(max, val);
+            queue.offer(new Unit(val, i, 0));
         }
-        int range = Integer.MAX_VALUE;
-        int start = 0, end = 0;
-        for (; ; ) {
-            Node cur = queue.peek();
-            min = cur.num;
-            if (range > max - min + 1) {
-                range = max - min + 1;
-                start = min;
+        while (queue.size() == nums.size()) {
+            Unit tmp = queue.poll();
+            if (max - tmp.val < len) {
+                len = max - tmp.val;
                 end = max;
             }
-
-            int _num;
-            if (cur.j + 1 < nums[cur.i].length) {
-                _num = nums[cur.i][cur.j + 1];
-                if (_num > max) {
-                    max = _num;
-                }
-            } else {
-                break;
+            int idx = tmp.y + 1;
+            if (idx < nums.get(tmp.x).size()) {
+                tmp.val = nums.get(tmp.x).get(idx);
+                max = Math.max(max, tmp.val);
+                tmp.y = idx;
+                queue.offer(tmp);
             }
-
-            queue.poll();
-            queue.offer(new Node(cur.i, cur.j + 1, _num));
         }
-
-        return new int[]{start, end};
+        return new int[]{end - len, end};
     }
 }
