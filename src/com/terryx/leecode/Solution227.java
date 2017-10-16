@@ -68,4 +68,37 @@ public class Solution227 {
         }
         return expression();
     }
+
+    /**
+     * Stack version
+     */
+    public int calculate0(String s) {
+        if (s == null) return 0;
+        int res = 0, num = 0;
+        char sign = '+';
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (int i = 0; i < s.length(); ++ i) {
+            char c = s.charAt(i);
+            if (Character.isDigit(c)) {
+                num = num * 10 + c - '0';
+            }
+            if (!Character.isDigit(c) && c != ' ' || i == s.length() - 1) {
+                if (sign == '+') {
+                    stack.push(num);
+                } else if (sign == '-') {
+                    stack.push(-num);
+                } else if (sign == '*') {
+                    stack.push(stack.pop() * num);
+                } else if (sign == '/') {
+                    stack.push(stack.pop() / num);
+                }
+                sign = c;
+                num = 0;
+            }
+        }
+        while (!stack.isEmpty()) {
+            res += stack.pop();
+        }
+        return res;
+    }
 }

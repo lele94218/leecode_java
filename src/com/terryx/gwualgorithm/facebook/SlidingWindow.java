@@ -53,13 +53,13 @@ public class SlidingWindow {
         if (nums == null || nums.length == 0) {
             return 0;
         }
-        int dp[][] = new int[n + 1][nums.length];
+        int dp[][] = new int[n + 1][nums.length + 1];
         int sum[] = new int[nums.length + 1];
         for (int i = 1; i <= nums.length; ++i) {
             sum[i] = sum[i - 1] + nums[i - 1];
         }
         for (int i = 1; i <= n; ++i) {
-            for (int j = 1; j < nums.length; ++j) {
+            for (int j = 1; j <= nums.length; ++j) {
                 dp[i][j] = Math.max((j - k >= 0 ? dp[i - 1][j - k] + sum[j] - sum[j - k] : 0), dp[i][j - 1]);
             }
         }
@@ -118,7 +118,7 @@ public class SlidingWindow {
     }
 
     public static void main(String[] args) {
-        int ans = new SlidingWindow().findNWindowsWithK(new int[]{1, 2, 1, 2, 6, 7, 5, 1}, 3, 1);
+        int ans = new SlidingWindow().findNWindowsWithK(new int[]{1, 2, 1, 2, 6, 7, 5, 1}, 3, 2);
         System.out.println(ans);
     }
 }
