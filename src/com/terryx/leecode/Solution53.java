@@ -6,6 +6,18 @@ import com.terryx.main.Utils;
  * @author taoranxue on 9/23/16 2:29 AM.
  */
 public class Solution53 {
+    public int maxSubArray0(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        int res = nums[0], prev = 0;
+        for (int i = 0; i < nums.length; ++ i) {
+            prev = Math.max(nums[i], prev + nums[i]);
+            res = Math.max(res, prev);
+        }
+        return res;
+    }
+
     private int[] a;
     private int solveIt(int left, int right) {
         if (left >= right) return a[left];
