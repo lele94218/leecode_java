@@ -1,12 +1,49 @@
 package com.terryx.leecode;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author taoranxue on 10/29/16 7:43 PM.
  */
 public class Solution127 {
+    /**
+     * BFS
+     */
+    public int ladderLength0(String begin, String end, List<String> wordList) {
+        if (begin == null || end == null || wordList == null || wordList.size() == 0) {
+            return 0;
+        }
+        Set<String> dict = new HashSet<>(wordList);
+        Queue<String> queue = new LinkedList<>();
+        Set<String> vist = new HashSet<>();
+        queue.offer(begin);
+        vist.add(begin);
+        int level = 0;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int idx = 0; idx < size; ++idx) {
+                if (end.equals(queue.peek())) {
+                    return level + 1;
+                }
+                char str[] = queue.poll().toCharArray();
+                for (int i = 0; i < str.length; ++i) {
+                    char origin = str[i];
+                    for (char c = 'a'; c <= 'z'; ++c) {
+                        str[i] = c;
+                        String tmp = new String(str);
+                        if (!vist.contains(tmp) && dict.contains(tmp)) {
+                            queue.offer(tmp);
+                            vist.add(tmp);
+                        }
+                    }
+                    str[i] = origin;
+                }
+            }
+            level++;
+        }
+        return 0;
+    }
+
     public int ladderLength(String beginWord, String endWord, Set<String> wordList) {
         Set<String> beginSet = new HashSet<>();
         Set<String> endSet = new HashSet<>();
@@ -40,7 +77,7 @@ public class Solution127 {
                 }
             }
             beginSet = tmpSet;
-            len ++;
+            len++;
         }
         return 0;
     }

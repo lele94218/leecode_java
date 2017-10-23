@@ -1,6 +1,7 @@
 package com.terryx.gwualgorithm.facebook;
 
 import com.terryx.main.RandomListNode;
+import com.terryx.main.TreeNode;
 import com.terryx.main.UndirectedGraphNode;
 
 import java.util.*;
@@ -83,5 +84,15 @@ public class CloneGraph {
             cur = cur.next;
         }
         return map.get(head);
+    }
+
+    public TreeNode cloneTree(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        TreeNode copy = new TreeNode(root.val);
+        copy.left = cloneTree(root.left);
+        copy.right = cloneTree(root.right);
+        return copy;
     }
 }

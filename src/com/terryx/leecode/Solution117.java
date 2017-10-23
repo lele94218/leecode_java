@@ -7,23 +7,28 @@ import com.terryx.main.TreeLinkNode;
  */
 public class Solution117 {
     public void connect(TreeLinkNode root) {
-        while (root != null)
-        {
-            TreeLinkNode cur = root;
-            TreeLinkNode dump = new TreeLinkNode(0);
-            TreeLinkNode head = dump;
-            while (cur != null) {
-                if (root.left != null) {
-                    dump.next = root.left;
-                    dump = dump.next;
+        if (root == null) {
+            return;
+        }
+        while (root != null) {
+            //save head
+            TreeLinkNode dummy = new TreeLinkNode(-1);
+            //save head in the prev dummy list
+            TreeLinkNode prev = root;
+            //using to connect current level node;
+            TreeLinkNode cur = dummy;
+            while (prev != null) {
+                if (prev.left != null) {
+                    cur.next = prev.left;
+                    cur = cur.next;
                 }
-                if (root.right != null) {
-                    dump.next = root.right;
-                    dump = dump.next;
+                if (prev.right != null) {
+                    cur.next = prev.right;
+                    cur = cur.next;
                 }
-                cur = cur.next;
+                prev = prev.next;
             }
-            root = head.next;
+            root = dummy.next;
         }
     }
 }

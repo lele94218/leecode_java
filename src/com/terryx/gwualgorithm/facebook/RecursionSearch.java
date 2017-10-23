@@ -194,6 +194,14 @@ public class RecursionSearch {
         path.remove(path.size() - 1);
     }
 
+    /**
+     * Examples:
+     * "123", 6 -> ["1+2+3", "1*2*3"]
+     * "232", 8 -> ["2*3+2", "2+3*2"]
+     * "105", 5 -> ["1*0+5","10-5"]
+     * "00", 0 -> ["0+0", "0-0", "0*0"]
+     * "3456237490", 9191 -> []
+     */
     public List<List<Integer>> subsetsWithDupIterative(int[] nums) {
         List<List<Integer>> ans = new ArrayList<>();
         if (nums == null) {
@@ -212,5 +220,44 @@ public class RecursionSearch {
             }
         }
         return ans;
+    }
+
+    public List<String> addOperators(String num, int target) {
+        List<String> ans = new ArrayList<>();
+        if (num == null || num.length() == 0) {
+            return ans;
+        }
+        dfs(num, (long) target, 0, 0, 0, "", ans);
+        return ans;
+    }
+
+    private void dfs(String str, long target, int cur, long res, long suffix, String path, List<String> ans) {
+        if (cur == str.length()) {
+            if (res == target) {
+                ans.add(path);
+            }
+            return;
+        }
+        if (cur == 0) {
+            long num = 0;
+            for (int i = cur; i < str.length(); ++i) {
+                if (i == cur + 1 && str.charAt(cur) == '0') {
+                    break;
+                }
+                num = num * 10 + str.charAt(i) - '0';
+                dfs(str, target, i + 1, num, num, path + num, ans);
+            }
+        } else {
+            long num = 0;
+            for (int i = cur; i < str.length(); ++i) {
+                if (i == cur + 1 && str.charAt(cur) == '0') {
+                    break;
+                }
+                num = num * 10 + str.charAt(i) - '0';
+                dfs(str, target, i + 1, res + num, num, path + "+" + num, ans);
+                dfs(str, target, i + 1, res - num, -num, path + "-" + num, ans);
+                dfs(str, target, i + 1, res - suffix + suffix * num, suffix * num, path + "*" + num, ans);
+            }
+        }
     }
 }

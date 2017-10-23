@@ -9,6 +9,26 @@ import java.util.Map;
  * @author taoranxue on 10/25/16 9:13 PM.
  */
 public class Solution17 {
+    public List<String> letterCombinations0(String digits) {
+        List<String> ans = new ArrayList<>();
+        if (digits == null || digits.length() == 0) {
+            return ans;
+        }
+        ans.add("");
+        String[] map = new String[]{"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        for (int i = 0; i < digits.length(); ++ i) {
+            char c = digits.charAt(i);
+            List<String> next = new ArrayList<>();
+            for (String prev : ans) {
+                for (int j = 0; j < map[c - '0'].length(); ++ j) {
+                    next.add(prev + map[c - '0'].charAt(j));
+                }
+            }
+            ans = next;
+        }
+        return ans;
+    }
+
     public List<String> letterCombinations(String digits) {
         if (digits == null || digits.length() == 0) return new ArrayList<>(0);
         String[] map = new String[]{"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
