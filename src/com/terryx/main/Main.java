@@ -3,6 +3,7 @@ package com.terryx.main;
 import javax.naming.NamingException;
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * @author xueta on 8/25/2016 8:06 AM.
@@ -56,9 +57,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Main i = new Main();
-        //List<String> list = i.permutation("The hat on that cat");
-        i.invert("cbabbaaa");
     }
 
 }
