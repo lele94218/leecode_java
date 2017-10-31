@@ -237,6 +237,7 @@ public class KSum {
      * No duplicate triples should be returned, order of the values in the tuple does not matter
      */
     public List<List<Integer>> allTriples(int[] nums, int target) {
+        Queue<Integer> queue = new PriorityQueue<>(Collections.reverseOrder());
         List<List<Integer>> ans = new ArrayList<>();
         if (nums == null || nums.length == 0) return ans;
         Arrays.sort(nums);

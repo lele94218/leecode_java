@@ -27,5 +27,6 @@ public class ReverseList {
         head.next.next = head;
         head.next = null;
         return newHead;
+
     }
 }
