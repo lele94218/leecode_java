@@ -1,64 +1,57 @@
 package com.terryx.main;
 
-import javax.naming.NamingException;
-import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileReader;
 import java.util.*;
-import java.util.concurrent.BlockingDeque;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * @author xueta on 8/25/2016 8:06 AM.
  */
 public class Main {
+// If we want to use strings to form a chain. Use recursion to find legal permutation.
 
-    List<String> permutation(String str) {
-        List<String> list = new ArrayList<>();
-        StringBuilder sb = new StringBuilder(str);
-        list.add(str);
-        for (int i = 1; i < str.length(); ++i) {
-            char c = sb.charAt(str.length() - 1);
-            sb.deleteCharAt(sb.length() - 1);
-            sb.insert(0, c);
-            list.add(sb.toString());
+    public boolean isChain(String[] strs) {
+        if (strs == null || strs.length == 0) {
+            return true;
         }
-        return list;
+// chose start string;
+        for (int i = 0; i < strs.length; ++ i) {
+            if (dfs(strs, i, 1 << i)) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    void invert(String str) {
-        List<StringBuilder> mat = new ArrayList<>();
-        for (int i = 0; i < str.length(); ++i) {
-            StringBuilder sb = new StringBuilder();
-            for (int j = 0; j < str.length(); ++j) {
-                sb.append("*");
-            }
-            mat.add(sb);
+    private boolean dfs(String[] strs, int cur, int used) {
+        //0b1111 -> n strings both used
+        if (used == (1 << strs.length) - 1) {
+            return true;
         }
-        for (int i = str.length() - 1; i >= 0; --i) {
-            for (int j = 0; j < str.length(); ++j) {
-                mat.get(j).replace(i, i + 1, "" + str.charAt(j));
-            }
-
-            for (StringBuilder sb : mat) {
-                System.out.println(sb.toString());
-            }
-            System.out.println();
-
-            Collections.sort(mat, new Comparator<StringBuilder>() {
-                @Override
-                public int compare(StringBuilder a, StringBuilder b) {
-                    return a.toString().compareTo(b.toString());
+        String start = strs[cur];
+        for (int i = 0; i < strs.length; ++ i) {
+            // not used string i
+            if (((1 << i) & used) == 0) {
+                if (start.charAt(start.length() - 1)
+                        == strs[i].charAt(0)) {
+                    if (dfs(strs, i, used | (1 << i))) {
+                        // once find, return true for pruning
+                        return true;
+                    }
                 }
-            });
-
-            for (StringBuilder sb : mat) {
-                System.out.println(sb.toString());
             }
-            System.out.println();
         }
+        return false;
     }
 
-    public static void main(String[] args) {
+
+
+    public static void main(String[] args) throws InterruptedException {
+        Main m = new Main();
+        String[] strs = {"aaa", "bbb", "baa", "zaz"};
+        System.out.println(m.isChain(strs));
     }
+
 
 }
