@@ -17,45 +17,26 @@ public class Solution765 {
         for (int i = 0; i < row.length; ++i) {
             map[row[i]] = i;
         }
-        return dfs(row, 0, map);
-    }
 
-    private int dfs(int[] row, int cur, int[] map) {
-        if (cur >= row.length) {
-            return 0;
+        int res = 0;
+        for (int i = 0; i < row.length; i += 2) {
+            int first = row[i], second = row[i + 1], swapVal = 0;
+            if (first % 2 == 0 && first + 1 == second || first % 2 == 1 && first - 1 == second) {
+                continue;
+            }
+            res++;
+            if (first % 2 == 0) {
+                swapVal = first + 1;
+            } else {
+                swapVal = first - 1;
+            }
+
+            int swapIndex = map[swapVal];
+            swap(row, i + 1, swapIndex);
+            map[second] = swapIndex;
+            map[swapVal] = i + 1;
         }
-        //System.out.println(cur);
-        System.out.println(Utils.debug(row));
-        int first = row[cur], second = row[cur + 1];
-        if ((first % 2 == 0 && first + 1 == second) || (first % 2 == 1 && first - 1 == second)) {
-            return dfs(row, cur + 2, map);
-        }
-        int swapVal = getSwapVal(first);
-        swap(row, cur + 1, map[swapVal]);
-        map[second] = map[swapVal];
-        map[swapVal] = cur + 1;
-
-        int swap0 = dfs(row, cur + 2, map);
-
-        swapVal = getSwapVal(second);
-        swap(row, cur + 1, map[swapVal]);
-        map[swapVal] = map[second];
-        map[second] = cur + 1;
-
-
-        swapVal = getSwapVal(second);
-        //swap(row, cur, getSwapIndex(second, map));
-        int swap1 = dfs(row, cur + 2, map);
-        //swap(row, cur, getSwapIndex(second, map));
-        return 1 + Math.min(swap0, swap1);
-    }
-
-    private int getSwapVal(int val) {
-        if (val % 2 == 0) {
-            return val + 1;
-        } else {
-            return val - 1;
-        }
+        return res;
     }
 
     private void swap(int[] a, int i, int j) {
