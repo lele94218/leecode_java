@@ -48,11 +48,8 @@ public class Main {
 
 
     public static void main(String[] args) throws InterruptedException {
-        Main m = new Main();
-        String[] strs = {"aaa", "bbb", "baa", "zaz"};
-        String str;
-        
-        System.out.println(m.isChain(strs));
+        String str = "\tfjdslkajflkdjs";
+        System.out.println(str.substring(str.indexOf("\t") + 2));
     }
 
 
