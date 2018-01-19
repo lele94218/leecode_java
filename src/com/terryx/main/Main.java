@@ -9,6 +9,7 @@ import java.util.*;
  * @author xueta on 8/25/2016 8:06 AM.
  */
 public class Main {
+
 // If we want to use strings to form a chain. Use recursion to find legal permutation.
 
     public boolean isChain(String[] strs) {
