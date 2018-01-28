@@ -58,16 +58,15 @@ public class Permutation {
             }
         }
 
+
         if (index == -1) {
-            reverse(nums, 0, nums.length - 1);
-            return;
+
         }
 
-        System.out.println(nums[index] + " " + index);
 
-        int biggerIdx = index + 1;
-        for (int i = index + 2; i < nums.length; ++i) {
-            if (nums[i - 1] >= nums[index] && nums[index] > nums[i]) {
+        int biggerIdx = nums.length - 1;
+        for (int i = nums.length - 1; i > index + 1; --i) {
+            if (nums[i - 1] > nums[index] && nums[index] >= nums[i]) {
                 biggerIdx = i - 1;
                 break;
             }

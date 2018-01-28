@@ -122,7 +122,6 @@ public class Solution399 {
             String[] equation = equations[i];
             String word0 = equation[0], word1 = equation[1];
             if (!map.containsKey(word0) && !map.containsKey(word1)) {
-                // System.out.println(word0 + " " + word1 + " " + map);
                 map.put(word0, index++);
                 map.put(word1, index++);
                 int x = map.get(word0), y = map.get(word1);
