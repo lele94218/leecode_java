@@ -1,6 +1,5 @@
 package com.terryx.leecode;
 
-import com.terryx.gwualgorithm.Point2D;
 import com.terryx.main.ListNode;
 
 import java.util.ArrayList;

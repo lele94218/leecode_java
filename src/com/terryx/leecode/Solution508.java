@@ -1,6 +1,5 @@
 package com.terryx.leecode;
 
-import com.terryx.gwualgorithm.google.Interview1;
 import com.terryx.main.TreeNode;
 
 import java.util.ArrayList;
