@@ -1,6 +1,6 @@
 package com.terryx.interview.purestorage;
 
-import com.terryx.leecode.lcode.concurrency.SpinLock;
+import com.terryx.leecode.classic.concurrency.SpinLock;
 
 import java.util.*;
 import java.util.concurrent.locks.Lock;

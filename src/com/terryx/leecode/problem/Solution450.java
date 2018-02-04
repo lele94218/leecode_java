@@ -6,6 +6,40 @@ import com.terryx.main.TreeNode;
  * @author taoranxue on 6/8/17 5:33 PM.
  */
 public class Solution450 {
+    // recursion
+    public TreeNode deleteNode0(TreeNode root, int key) {
+        if (root == null) {
+            return null;
+        }
+        if (key < root.val) {
+            root.left = deleteNode(root.left, key);
+        } else if (key > root.val) {
+            root.right = deleteNode(root.right, key);
+        } else {
+            if (root.left == null) {
+                return root.right;
+            } else if (root.right == null) {
+                return root.left;
+            } else {
+                TreeNode min = findMin(root.right);
+                // copy
+                root.val = min.val;
+                root.right = deleteNode(root.right, min.val);
+            }
+        }
+        return root;
+    }
+
+    private TreeNode findMin(TreeNode root) {
+        TreeNode cur = root;
+        while (cur.left != null) {
+            cur = cur.left;
+        }
+        return cur;
+    }
+
+    // ---------------------------------------------------------------
+
     public TreeNode deleteNode(TreeNode root, int key) {
         TreeNode cur = root;
         TreeNode pre = cur;
