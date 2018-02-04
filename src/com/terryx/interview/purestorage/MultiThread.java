@@ -58,7 +58,7 @@ public class MultiThread {
     }
 
     /**
-     * if this is used in multi-thread condition, there are a couple of problems:
+     * if this is used in multi-thread condition, there are a couple of problem:
      * 1) if say register finished if check(isFired = false) and then fire is run
      * and finished(isFired = true), then cb in register is left in the queue
      * without anyone running.
