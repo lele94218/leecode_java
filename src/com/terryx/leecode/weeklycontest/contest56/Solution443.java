@@ -1,39 +1,54 @@
-package com.terryx.leecode.problem;
+package com.terryx.leecode.weeklycontest.contest56;
 
 import java.util.*;
 
 /**
- * @author taoranxue on 1/23/18 6:53 PM.
+ * @author taoranxue on 2/6/18 11:30 PM.
  */
 public class Solution443 {
     public int compress(char[] chars) {
         if (chars == null || chars.length == 0) {
             return 0;
         }
-        char c = chars[0];
-        int cnt = 0, index = 0;
-        for (int i = 0; i < chars.length; ++i) {
-            if (chars[i] == c) {
+        char pre = chars[0];
+        int cnt = 1, index = 1;
+        for (int i = 1; i < chars.length; ++i) {
+            char c = chars[i];
+            if (c == pre) {
                 cnt++;
             } else {
-                chars[index++] = c;
                 if (cnt > 1) {
                     String str = Integer.toString(cnt);
                     for (int j = 0; j < str.length(); ++j) {
                         chars[index++] = str.charAt(j);
                     }
                 }
-                c = chars[i];
+                chars[index++] = c;
                 cnt = 1;
+                pre = c;
             }
+
+
         }
-        chars[index++] = c;
+
+
         if (cnt > 1) {
             String str = Integer.toString(cnt);
             for (int j = 0; j < str.length(); ++j) {
                 chars[index++] = str.charAt(j);
             }
         }
+//
+//        for (int i = 0; i < index; ++ i) {
+//            System.out.print(chars[i]);
+//        }
+//        System.out.println();
         return index;
+    }
+
+    public static void main(String[] args) {
+        Solution443 m = new Solution443();
+//        System.out.println(m.compress(new char[]{'a'}));
+        System.out.println(m.compress(new char[]{'a', 'a', 'b', 'b', 'c', 'c', 'c'}));
     }
 }
