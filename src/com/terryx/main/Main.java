@@ -33,19 +33,22 @@ public class Main {
         return S.length() - res;
     }
 
+    class A extends B implements Comparable<A> {
+
+        @Override
+        public int compareTo(A o) {
+            return 0;
+        }
+    }
+
+    class B{
+
+    }
+
+
     public static void main(String[] args) throws InterruptedException {
         Main m = new Main();
-//        System.out.println(m.solution("zabzeddcdefgff"));
-        TreeMap<Integer, Integer> map = new TreeMap<>();
-        map.put(9,1);
-        map.put(16,1);
-        map.put(1,1);
-        map.put(3,1);
-        map.put(2,1);
-        map.put(4,1);
-        map.put(100,1);
-        List<Integer> list = new ArrayList<>(map.keySet());
-        System.out.println(list);
+
 
 
     }
