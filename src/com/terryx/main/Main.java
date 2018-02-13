@@ -46,6 +46,7 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
         Main m = new Main();
+        Random r = new Random();
 
     }
 
