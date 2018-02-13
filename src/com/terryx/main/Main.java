@@ -1,6 +1,5 @@
 package com.terryx.main;
 
-
 import java.util.*;
 
 /**
@@ -15,10 +14,10 @@ public class Main {
         int res = 1, cur = 1;
         int dp[] = new int[26];
         dp[S.charAt(0) - 'a'] = 1;
-        for (int i = 1; i < S.length(); ++ i) {
+        for (int i = 1; i < S.length(); ++i) {
             char c = S.charAt(i);
             int to = c - 'a', tmp = 0;
-            for (int j = 0; j <= to; ++ j) {
+            for (int j = 0; j <= to; ++j) {
                 tmp = Math.max(tmp, dp[j]);
             }
             if (tmp > 0) {
@@ -41,17 +40,13 @@ public class Main {
         }
     }
 
-    class B{
+    class B {
 
     }
-
 
     public static void main(String[] args) throws InterruptedException {
         Main m = new Main();
 
-
-
     }
-
 
 }
