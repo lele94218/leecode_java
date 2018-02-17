@@ -6,48 +6,25 @@ import java.util.*;
  * @author xueta on 8/25/2016 8:06 AM.
  */
 public class Main {
-    public int solution(String S) {
-        // write your code in Java SE 8
-        if (S == null || S.length() == 0) {
-            return 0;
-        }
-        int res = 1, cur = 1;
-        int dp[] = new int[26];
-        dp[S.charAt(0) - 'a'] = 1;
-        for (int i = 1; i < S.length(); ++i) {
-            char c = S.charAt(i);
-            int to = c - 'a', tmp = 0;
-            for (int j = 0; j <= to; ++j) {
-                tmp = Math.max(tmp, dp[j]);
-            }
-            if (tmp > 0) {
-                dp[to] = Math.max(dp[to], tmp + 1);
-            } else {
-                dp[to] = 1;
-            }
-            res = Math.max(dp[to], res);
-        }
-        System.out.println(Utils.debug(dp));
-        System.out.println(S.length());
-        return S.length() - res;
-    }
-
-    class A extends B implements Comparable<A> {
-
-        @Override
-        public int compareTo(A o) {
-            return 0;
-        }
-    }
-
-    class B {
-
-    }
 
     public static void main(String[] args) throws InterruptedException {
-        Main m = new Main();
-        Random r = new Random();
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int a[] = new int[n];
+        for (int i = 0; i < n; ++i) {
+            a[i] = in.nextInt();
+        }
+        int l = 0, r = 0;
+        for (int i = 0; i < n && a[i] <= 1 + Math.floor(999999.0 / 2.0); ++i) {
+            l = a[i] - 1;
+        }
 
+        for (int j = n - 1; j >= 0 && a[j] >= 1000000 - Math.floor(999999.0 / 2.0); --j) {
+            r = 1000000 - a[j];
+        }
+
+        System.out.println(Math.max(l, r));
     }
+
 
 }
