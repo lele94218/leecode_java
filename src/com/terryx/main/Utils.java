@@ -8,6 +8,7 @@ import java.util.Queue;
  */
 public class Utils extends ListNode {
     protected int a;
+
     public void fun() {
         getS();
     }
@@ -19,9 +20,10 @@ public class Utils extends ListNode {
     public static void main(String args[]) {
         Utils utils = new Utils();
     }
-    public static String debug(Object ... objects) {
+
+    public static String debug(Object... objects) {
         String str = "";
-        for (int i = 0; i < objects.length; ++ i) {
+        for (int i = 0; i < objects.length; ++i) {
             str += objects[i].toString();
             str += " ";
         }
@@ -30,8 +32,11 @@ public class Utils extends ListNode {
     }
 
     public static String debug(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return "[]";
+        }
         String str = "";
-        for (int i = 0; i < nums.length; ++ i) {
+        for (int i = 0; i < nums.length; ++i) {
             str += nums[i];
             str += " ";
         }

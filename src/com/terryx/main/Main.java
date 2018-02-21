@@ -9,22 +9,32 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
         Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
-        int a[] = new int[n];
-        for (int i = 0; i < n; ++i) {
-            a[i] = in.nextInt();
+        int t = in.nextInt();
+        for (int i = 0; i < t; ++i) {
+            int x = in.nextInt();
+            if (x == 0) {
+                System.out.println("1 1");
+                continue;
+            }
+            boolean find = false;
+            for (int n = (int) Math.ceil(Math.sqrt((double) x)); n <= (int)Math.ceil(4.0 / 3.0 * Math.sqrt(x)); ++n) {
+                //System.out.println(n);
+                if (n * n - x == 0) {
+                    continue;
+                }
+                int m = (int) Math.floor(n / Math.sqrt(n * n - x));
+                if (m == 0) {
+                    continue;
+                }
+                int k = (int) Math.floor(n / m);
+                if (x == n * n - k * k) {
+                    System.out.println(n + " " + m);
+                    find = true;
+                    break;
+                }
+            }
+            if (!find)
+                System.out.println(-1);
         }
-        int l = 0, r = 0;
-        for (int i = 0; i < n && a[i] <= 1 + Math.floor(999999.0 / 2.0); ++i) {
-            l = a[i] - 1;
-        }
-
-        for (int j = n - 1; j >= 0 && a[j] >= 1000000 - Math.floor(999999.0 / 2.0); --j) {
-            r = 1000000 - a[j];
-        }
-
-        System.out.println(Math.max(l, r));
     }
-
-
 }
