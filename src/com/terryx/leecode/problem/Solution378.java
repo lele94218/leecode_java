@@ -109,4 +109,34 @@ public class Solution378 {
         }
         return queue.peek().val;
     }
+
+    // Binary Search O(log C * n * log n)
+    public int kthSmallest1(int[][] matrix, int k) {
+        int n = matrix.length;
+        int low = matrix[0][0], high = matrix[n - 1][n - 1];
+        while (low < high) {
+            int mid = (low + high) / 2;
+            int count = 0;
+            for (int i = 0; i < n; ++ i) {
+                int l = 0, h = n - 1;
+                while (l < h) {
+                    int m = (l + h + 1) / 2;
+                    if (matrix[i][m] <= mid) {
+                        l = m;
+                    } else {
+                        h = m - 1;
+                    }
+                }
+                if (matrix[i][l] <= mid) {
+                    count += l + 1;
+                }
+            }
+            if (count < k) {
+                low = mid + 1;
+            } else {
+                high = mid;
+            }
+        }
+        return low;
+    }
 }

@@ -6,6 +6,43 @@ import java.util.*;
  * @author taoranxue on 9/30/17 5:33 PM.
  */
 public class Solution658 {
+    // Binary Search
+    public List<Integer> findClosestElements0(int[] arr, int k, int x) {
+        int low = 0, high = arr.length - 1;
+        while (low + 1 < high) {
+            int mid = (low + high) / 2;
+            if (arr[mid] > x) {
+                high = mid - 1;
+            } else {
+                low = mid;
+            }
+        }
+        int index = high;
+        if (Math.abs(x - arr[low]) <= Math.abs(x - arr[high])) {
+            index = low;
+        }
+        int left = index - 1, right = index + 1;
+        for (int i = 0; i < k - 1; ++i) {
+            if (left >= 0 && right < arr.length) {
+                if (Math.abs(x - arr[left]) <= Math.abs(x - arr[right])) {
+                    left--;
+                } else {
+                    right++;
+                }
+            } else if (left >= 0) {
+                left--;
+            } else {
+                right++;
+            }
+        }
+        List<Integer> ans = new ArrayList<>();
+        for (int i = left + 1; i < right; ++i) {
+            ans.add(arr[i]);
+        }
+        return ans;
+    }
+
+
     private int leftStart = -1, rightStart = -1;
 
     public List<Integer> findClosestElements(int[] array, int k, int target) {

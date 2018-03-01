@@ -35,6 +35,38 @@ public class Solution786 {
         return null;
     }
 
+    // Binary Search very fast
+    public int[] kthSmallestPrimeFraction0(int[] A, int K) {
+        int n = A.length;
+        double low = (double) A[0] / A[n - 1];
+        double high = (double) A[n - 1] / A[0];
+        Set<Integer> set = new HashSet<>();
+        for (int a : A) set.add(a);
+        for (int itr = 0; itr < 100; ++itr) {
+            double mid = (low + high) * 0.5;
+            int i = 0, j = 0, cnt = 0;
+            for (; i < n; ++i) {
+                for (; j < n; ++j) {
+                    if (i < j && A[i] < mid * A[j]) {
+                        cnt += (n - j);
+                        break;
+                    }
+                }
+            }
+            if (cnt < K) {
+                low = mid;
+            } else {
+                high = mid;
+            }
+        }
+        for (int a : A) {
+            double p = Math.round(low * (double) a);
+            if (Math.abs(p - low * (double) a) < 1e-5 && set.contains((int) p)) {
+                return new int[]{(int) p, a};
+            }
+        }
+        return null;
+    }
 
     public static void main(String[] args) {
         Solution786 m = new Solution786();
