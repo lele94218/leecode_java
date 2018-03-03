@@ -19,4 +19,34 @@ public class Solution28 {
         }
         return -1;
     }
+
+    // KMP
+    public int strStr0(String s, String p) {
+        if (p == null || p.length() > s.length()) return -1;
+        if (p.length() == 0) return 0;
+        int f[] = new int[p.length()];
+        for (int i = 1; i < p.length(); ++i) {
+            int t = f[i - 1];
+            while (t > 0 && p.charAt(i) != p.charAt(t)) t = f[t - 1];
+            if (p.charAt(i) == p.charAt(t)) ++t;
+            f[i] = t;
+        }
+
+        for (int i = 0; i <= s.length() - p.length(); ++ i) {
+            int index = i;
+            boolean flag = true;
+            for (int j = 0; j < p.length(); ++j) {
+                if (s.charAt(index) != p.charAt(j)) {
+                    i += f[j];
+                    flag = false;
+                    break;
+                }
+                index++;
+            }
+            if (flag) {
+                return i;
+            }
+        }
+        return -1;
+    }
 }
